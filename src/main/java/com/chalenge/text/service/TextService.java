@@ -29,7 +29,6 @@ public class TextService {
   
 
   public Text create(String value,Integer chars) {
-    chars = chars < 2 ? 2 : chars;
     Text newText = Text.builder()
       .hash(Md5Utils.getMD5EncryptedValue(value))
       .chars(chars)
@@ -39,6 +38,7 @@ public class TextService {
   }
 
   public Text findOrCreate(String value, int chars) {
+    chars = chars < 2 ? 2 : chars;
     String hash = Md5Utils.getMD5EncryptedValue(value);
     Optional<Text> exisText =textRepository.findByHashAndChars(hash, chars);
     if(exisText.isPresent()) {
