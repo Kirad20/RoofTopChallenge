@@ -29,6 +29,7 @@ public class TextService {
   
 
   public Text create(String value,Integer chars) {
+    chars = chars < 2 ? 2 : chars;
     Text newText = Text.builder()
       .hash(Md5Utils.getMD5EncryptedValue(value))
       .chars(chars)
